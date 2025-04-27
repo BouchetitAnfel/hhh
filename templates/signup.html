@@ -1,3 +1,85 @@
-<p>yahoo
-    
-</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+  </head>
+  <body>
+    <main class="container">
+      <div class="signup-wrapper">
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/0b8600db70f34fe6a3d376d8c30db2fe/9a5eff83d69f5eaa144ee0cbe1709d453591c910?placeholderIfAbsent=true"
+          alt="Background"
+          class="background-image"
+        />
+        <h1 class="signup-title">Sign Up</h1>
+        <form id="signupForm" class="form-container" method="POST" action="/signup">
+            <div class="input-group">
+            <label class="input-label" for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"  
+              class="input-field"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"  
+              class="input-field"
+              placeholder="Enter your Email"
+            />
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"  
+              class="input-field"
+              placeholder="Enter your Password"
+            />
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="confirmPassword">Confirm password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"  
+              class="input-field"
+              placeholder="Confirm your password"
+            />
+          </div>
+          <div class="next-button-container">
+            <button type="submit" class="next-text">Next</button>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/0b8600db70f34fe6a3d376d8c30db2fe/5d078971-d4db-408a-a27f-e21d1b4ac7f2?placeholderIfAbsent=true"
+              alt="Next arrow"
+              class="next-icon"
+            />
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          const formData = {
+            name: document.getElementById("name").value,  
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+            confirmPassword: document.getElementById("confirmPassword").value,
+          };
+          console.log("Form submitted:", formData);
+        });
+    </script>
+  </body>
+</html>

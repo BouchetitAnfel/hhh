@@ -1,6 +1,7 @@
-from xmlrpc.server import SimpleXMLRPCServer
+from flask import Flask, request, jsonify
 from threading import Lock
-import time
+
+app = Flask(__name__)
 
 class ForecastCalendar:
     def __init__(self):
@@ -27,10 +28,8 @@ class ForecastCalendar:
         return False
 
     def get_forecast(self, date):
-        # Block if locked
         if self.lock.locked():
             return "SERVER LOCKED - Try again later"
-        
         if date in self.forecasts:
             desc, wind, temp = self.forecasts[date]
             return f"Weather: {desc}, Wind: {wind}, Temp: {temp}°C"
@@ -44,11 +43,36 @@ class ForecastCalendar:
         self.forecasts[date] = (desc, wind, temp)
         return "Forecast updated"
 
-def main():
-    server = SimpleXMLRPCServer(('localhost', 10001))
-    server.register_instance(ForecastCalendar())
-    print("Server running - Clients will be blocked when locked")
-    server.serve_forever()
+calendar = ForecastCalendar()
+
+@app.route("/get_forecast", methods=["GET"])
+def get_forecast():
+    date = request.args.get("date")
+    result = calendar.get_forecast(date)
+    return jsonify({"result": result})
+
+@app.route("/update_forecast", methods=["POST"])
+def update_forecast():
+    data = request.json
+    password = data.get("password")
+    date = data.get("date")
+    desc = data.get("desc")
+    wind = data.get("wind")
+    temp = data.get("temp")
+    result = calendar.update_forecast(password, date, desc, wind, temp)
+    return jsonify({"result": result})
+
+@app.route("/acquire_lock", methods=["POST"])
+def acquire_lock():
+    client_id = request.json.get("client_id")
+    success = calendar.acquire_lock(client_id)
+    return jsonify({"success": success})
+
+@app.route("/release_lock", methods=["POST"])
+def release_lock():
+    client_id = request.json.get("client_id")
+    success = calendar.release_lock(client_id)
+    return jsonify({"success": success})
 
 if __name__ == "__main__":
-    main()
+    app.run(port=10001, debug=True)

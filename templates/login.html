@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 </head>
 <body>
     <main class="login-container">
@@ -14,7 +14,7 @@
                 alt="Background"
                 class="background-image"
             />
-            <form class="login-form">
+            <form class="login-form" method="POST" action="/login">
                 <img
                     src="https://cdn.builder.io/api/v1/image/assets/0b8600db70f34fe6a3d376d8c30db2fe/334ea2ea7a04fad6e5c6bc4ff11b3aa78efc6a61?placeholderIfAbsent=true"
                     alt="Form background"
@@ -23,18 +23,22 @@
                 <h1 class="login-title">Login</h1>
 
                 <div class="input-group">
-                    <label class="input-label">Username</label>
+                    <label class="input-label" for="loginEmail">Email</label>
                     <input
                         type="text"
+                        id="loginEmail"
+                        name="email"  
                         placeholder="Enter your username or your Email"
                         class="input-field"
                     />
                 </div>
 
                 <div class="input-group">
-                    <label class="input-label">Password</label>
+                    <label class="input-label" for="loginPassword">Password</label>
                     <input
                         type="password"
+                        id="loginPassword"
+                        name="password" 
                         placeholder="Enter your Password"
                         class="input-field"
                     />

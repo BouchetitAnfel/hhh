@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome Page</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
   <body>
     <div class="welcome-page">
@@ -40,11 +40,11 @@
           
           // Add click event listeners
           loginButton.addEventListener('click', function() {
-            window.location.href = 'login.html'; // Change this to your login page URL
+            window.location.href = '/login'; // Change this to your login page URL
           });
           
           signupButton.addEventListener('click', function() {
-            window.location.href = 'signup.html'; // Change this to your signup page URL
+            window.location.href = '/signup';  // Not 'signup.html' !!
           });
         });
       </script>
