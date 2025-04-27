@@ -14,57 +14,67 @@
           alt="Background"
           class="background-image"
         />
-        <h1 class="signup-title">Sign Up</h1>
-        <form id="signupForm" class="form-container" method="POST" action="/signup">
-            <div class="input-group">
-            <label class="input-label" for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"  
-              class="input-field"
-              placeholder="Enter your name"
-            />
+        <div class="content-area">
+            <div class="left-section">
+                <!-- Cloud Logo Image -->
+                <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/a51de5e4d1d91ed1e315cfb45c5436b6f2fbcc8c?placeholderIfAbsent=true"
+                alt="Smiling Cloud"
+                class="h-[261px] w-[356px] max-md:h-[220px] max-md:w-[300px] max-sm:h-[180px] max-sm:w-[250px]"
+              />
+              </div>
+          <div class="right-section">
+            <h1 class="signup-title">Sign Up</h1>
+            <form id="signupForm" class="form-container" method="POST" action="/signup">
+              <div class="input-group">
+                <label class="input-label" for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="input-field"
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="input-field"
+                  placeholder="Enter your Email"
+                />
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="input-field"
+                  placeholder="Enter your Password"
+                />
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="confirmPassword">Confirm password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  class="input-field"
+                  placeholder="Confirm your password"
+                />
+              </div>
+              <div class="next-button-container">
+                <button type="submit" class="next-text">Next</button>
+                <div class="next-icon">
+                  ➔
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="input-group">
-            <label class="input-label" for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"  
-              class="input-field"
-              placeholder="Enter your Email"
-            />
-          </div>
-          <div class="input-group">
-            <label class="input-label" for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"  
-              class="input-field"
-              placeholder="Enter your Password"
-            />
-          </div>
-          <div class="input-group">
-            <label class="input-label" for="confirmPassword">Confirm password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"  
-              class="input-field"
-              placeholder="Confirm your password"
-            />
-          </div>
-          <div class="next-button-container">
-            <button type="submit" class="next-text">Next</button>
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/0b8600db70f34fe6a3d376d8c30db2fe/5d078971-d4db-408a-a27f-e21d1b4ac7f2?placeholderIfAbsent=true"
-              alt="Next arrow"
-              class="next-icon"
-            />
-          </div>
-        </form>
+        </div>
       </div>
     </main>
 
@@ -73,7 +83,7 @@
         .getElementById("signupForm")
         .addEventListener("submit", function (e) {
           const formData = {
-            name: document.getElementById("name").value,  
+            name: document.getElementById("name").value,
             email: document.getElementById("email").value,
             password: document.getElementById("password").value,
             confirmPassword: document.getElementById("confirmPassword").value,
