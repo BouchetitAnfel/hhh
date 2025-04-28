@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   </head>
   <body>
     <div class="welcome-page">
@@ -15,8 +15,8 @@
             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3d2397738842c4ed1b45d6023cc324c3bc2e9af1?placeholderIfAbsent=true&apiKey=0b8600db70f34fe6a3d376d8c30db2fe" class="background-image" alt="Background" />
             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4008ade2ac38e91e7a2e276b47da2987aa1f8b7f?placeholderIfAbsent=true&apiKey=0b8600db70f34fe6a3d376d8c30db2fe" class="logo" alt="Logo" />
             <div class="heading">
-              Grab Your umbrella <br />
-              Today !
+              Hello Again! <br />
+              It's raining CATS $ DOGS today!
             </div>
             <div class="temperature-container">
               <div class="separator">|</div>
@@ -26,26 +26,9 @@
             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b52246e9e67b32b698c178b45d1cfd2fc2835632?placeholderIfAbsent=true&apiKey=0b8600db70f34fe6a3d376d8c30db2fe" class="bottom-image" alt="Bottom Image" />
           </div>
         </div>
-        <div class="button-container">
-          <button class="login-button">Login</button>
-          <button class="signup-button">Sign Up</button>
-        </div>
+       
       </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          // Get the button elements
-          const loginButton = document.querySelector('.login-button');
-          const signupButton = document.querySelector('.signup-button');
-          
-          loginButton.addEventListener('click', function() {
-            window.location.href = '/login'; 
-          });
-          
-          signupButton.addEventListener('click', function() {
-            window.location.href = '/signup'; 
-          });
-        });
-      </script>
+    
   </body>
 </html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XML-RPC Lock Attack Simulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        .button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .attack-button {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .attack-button:hover {
+            background-color: #c0392b;
+        }
+        .stop-button {
+            background-color: #3498db;
+            color: white;
+        }
+        .stop-button:hover {
+            background-color: #2980b9;
+        }
+        .status {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .status.running {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.stopped {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>XML-RPC Lock Attack Simulator</h1>
+        
+        <div class="control-panel">
+            <button id="launchBtn" class="button attack-button">Launch Attack</button>
+            <button id="stopBtn" class="button stop-button">Stop Attack</button>
+        </div>
+        
+        <div id="status" class="status {{ 'running' if attack_status else 'stopped' }}">
+            Status: <span id="statusText">{{ 'ATTACK RUNNING' if attack_status else 'IDLE' }}</span>
+        </div>
+        
+        <h3>How it works:</h3>
+        <p>This simulator demonstrates a denial of service attack by acquiring an exclusive lock on the server via XML-RPC protocol.</p>
+        <p>When the lock is acquired, all users trying to access the main application will see an error page.</p>
+        
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Click "Launch Attack" to start the DoS simulation</li>
+            <li>Try accessing the main application at <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></li>
+            <li>You should see the error page displayed for all users</li>
+            <li>Click "Stop Attack" to release the lock and restore normal functionality</li>
+        </ol>
+    </div>
+
+    <script>
+        document.getElementById('launchBtn').addEventListener('click', function() {
+            fetch('/launch_attack', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').className = 'status running';
+                document.getElementById('statusText').textContent = 'ATTACK RUNNING';
+                console.log(data.message);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('stopBtn').addEventListener('click', function() {
+            fetch('/stop_attack', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').className = 'status stopped';
+                document.getElementById('statusText').textContent = 'IDLE';
+                console.log(data.message);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

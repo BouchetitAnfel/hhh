@@ -35,32 +35,7 @@ class ForecastCalendar:
             return f"Weather: {desc}, Wind: {wind}, Temp: {temp}°C"
         return "No forecast"
 
-    def update_forecast(self, password, date, desc, wind, temp):
-        if password != self.password:
-            return "Authentication failed"
-        if self.lock.locked():
-            return "SERVER LOCKED - Cannot update now"
-        self.forecasts[date] = (desc, wind, temp)
-        return "Forecast updated"
-
 calendar = ForecastCalendar()
-
-@app.route("/get_forecast", methods=["GET"])
-def get_forecast():
-    date = request.args.get("date")
-    result = calendar.get_forecast(date)
-    return jsonify({"result": result})
-
-@app.route("/update_forecast", methods=["POST"])
-def update_forecast():
-    data = request.json
-    password = data.get("password")
-    date = data.get("date")
-    desc = data.get("desc")
-    wind = data.get("wind")
-    temp = data.get("temp")
-    result = calendar.update_forecast(password, date, desc, wind, temp)
-    return jsonify({"result": result})
 
 @app.route("/acquire_lock", methods=["POST"])
 def acquire_lock():

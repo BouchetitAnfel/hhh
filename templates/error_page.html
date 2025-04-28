@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Unavailable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .error-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #e74c3c;
+        }
+        .alert-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        .message {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .retry-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .retry-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="alert-icon">⚠️</div>
+        <h1>Service Temporarily Unavailable</h1>
+        <div class="message">
+            <p>We're experiencing technical difficulties at the moment. The system is currently under an exclusive lock.</p>
+            <p>This could be due to scheduled maintenance or a system-wide operation in progress.</p>
+            <p>Please try again later.</p>
+        </div>
+        <button class="retry-button" onclick="window.location.reload()">Retry</button>
+    </div>
+</body>
+</html>
